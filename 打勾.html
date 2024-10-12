@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6x6 Number Grid</title>
+    <style>
+        table {
+            width: 600px;
+            height: 600px;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            font-size: 60px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<table>
+    <tbody>
+        <!-- JavaScript will populate this table -->
+    </tbody>
+</table>
+
+<script>
+    const tbody = document.querySelector('tbody');
+    let number = 1;
+
+    // Create 6x6 grid
+    for (let i = 0; i < 6; i++) {
+        const row = document.createElement('tr');
+        for (let j = 0; j < 6; j++) {
+            const cell = document.createElement('td');
+            const originalNumber = number++;
+            cell.textContent = originalNumber;
+
+            // Track the visibility state
+            let isVisible = true;
+
+            cell.addEventListener('click', function() {
+                if (isVisible) {
+                    this.textContent = ''; // Hide the number
+                } else {
+                    this.textContent = originalNumber; // Show the number
+                }
+                isVisible = !isVisible; // Toggle the visibility state
+            });
+
+            row.appendChild(cell);
+        }
+        tbody.appendChild(row);
+    }
+</script>
+
+</body>
+</html>
